@@ -4,7 +4,7 @@ import PIL, os
 from PIL import Image, ImageDraw, ImageFont
 import random
 import requests
-from io import StringIO
+from io import BytesIO
 from random import choice
 TEMPLATE_WIDTH = 574
 TEMPLATE_HEIGHT = 522
@@ -30,7 +30,12 @@ def send_js(path):
     return send_from_directory('static', path)
 
 @app.route("/gen-demotivator/<str1>/<str2>")
-def demote(str1,str2):
+@app.route("/gen-demotivator/<str1>")
+@app.route("/gen-demotivator")
+@app.route("/gen-demotivator/<str1>/<str2>/")
+@app.route("/gen-demotivator/<str1>/")
+@app.route("/gen-demotivator/")
+def demote(str1="",str2=""):
     TEMPLATE_FILENAME = 'template.jpg'
     EXTENSIONS = ['.jpg', '.png']
     str1=str(str1)
@@ -44,7 +49,7 @@ def demote(str1,str2):
 
 
 
-    imgio=StringIO()
+    imgio=BytesIO()
     frame = PIL.Image.open(TEMPLATE_FILENAME)
     demot = PIL.Image.open(requests.get("https://picsum.photos/1000/1000", stream=True).raw)
     demot = demot.resize(getSizeFromArea(TEMPLATE_COORDS), PIL.Image.ANTIALIAS)
@@ -58,7 +63,7 @@ def demote(str1,str2):
                           LOWER_FONT_Y)
     frame = frame.convert("RGB")
     frame.save(imgio, 'JPEG', quality=70)
-    img_io.seek(0)
+    imgio.seek(0)
     return send_file(imgio, mimetype='image/jpeg')
 
 if __name__ == "__main__":
