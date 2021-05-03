@@ -26,11 +26,12 @@ def getSizeFromArea(area):
 def send_js(path):
     return send_from_directory('static', path)
 
-@app.route("/gen-demotivator/<str:str1>/<str:str2>")
+@app.route("/gen-demotivator/<str1>/<str2>")
 def demote(str1,str2):
     TEMPLATE_FILENAME = 'template.jpg'
     EXTENSIONS = ['.jpg', '.png']
-
+    str1=str(str1)
+    str2=str(str2)
     UPPER_FONT = 'font.ttf'
     UPPER_SIZE = 45
     UPPER_FONT_Y = 390
