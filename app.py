@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 import random
 import requests
 from io import BytesIO
-from random import choice
+from random import choice,randint
 TEMPLATE_WIDTH = 574
 TEMPLATE_HEIGHT = 522
 TEMPLATE_COORDS = (75, 45, 499, 373)
@@ -51,7 +51,8 @@ def demote(str1="",str2=""):
 
     imgio=BytesIO()
     frame = PIL.Image.open(TEMPLATE_FILENAME)
-    demot = PIL.Image.open(requests.get("https://picsum.photos/1000/1000", stream=True).raw)
+    hh=randint(200,1500)
+    demot = PIL.Image.open(requests.get(f"https://picsum.photos/{hh}/{hh}", stream=True).raw)
     demot = demot.resize(getSizeFromArea(TEMPLATE_COORDS), PIL.Image.ANTIALIAS)
     frame.paste(demot, TEMPLATE_COORDS)
 
