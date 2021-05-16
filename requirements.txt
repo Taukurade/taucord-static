@@ -3,4 +3,5 @@ psycopg2-binary
 gunicorn
 requests
 flask
+https://github.com/Taukurade/mega.py/archive/refs/heads/master.zip
 Pillow
