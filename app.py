@@ -86,6 +86,14 @@ def screenshot(name):
     print(scr)
     m.download(scr,dest_filename=f"{rname}.png")
     return send_file(f"{rname}.png", mimetype='image/png')
+@app.route('/kr/<name>')
+def kontrolnaya_rabota(name):
+    imgio=BytesIO()
+    rname=randint(0x0,0xfff)
+    scr=m.find(name)[0]
+    print(scr)
+    m.download(scr,dest_filename=f"{rname}")
+    return send_file(f"{rname}", mimetype='plain/text')
 
 if __name__ == "__main__":
     app.run()
