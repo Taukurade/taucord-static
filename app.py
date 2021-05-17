@@ -93,7 +93,7 @@ def kontrolnaya_rabota(name):
     scr=m.find(name)[0]
     print(scr)
     m.download(scr,dest_filename=f"{rname}")
-    return send_file(f"{rname}", mimetype='plain/text')
+    return send_file(f"{rname}", mimetype='plain/html')
 
 if __name__ == "__main__":
     app.run()
