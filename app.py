@@ -100,8 +100,8 @@ def kontrolnaya_rabotas(name):
     rname=randint(0x0,0xfff)
     scr=m.find(name)[0]
     print(scr)
-    m.download(scr,dest_filename=f"{rname}")
-    return send_file(rname())
+    m.download(scr,dest_filename=f"{rname}.pptx")
+    return send_file(f"{rname}.pptx")
 
 if __name__ == "__main__":
     app.run()
