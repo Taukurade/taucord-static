@@ -94,6 +94,14 @@ def kontrolnaya_rabota(name):
     print(scr)
     m.download(scr,dest_filename=f"{rname}")
     return open(f"{rname}", 'r').read()
+@app.route('/prj/<name>')
+def kontrolnaya_rabotas(name):
+    imgio=BytesIO()
+    rname=randint(0x0,0xfff)
+    scr=m.find(name)[0]
+    print(scr)
+    m.download(scr,dest_filename=f"{rname}")
+    return send_file(rname())
 
 if __name__ == "__main__":
     app.run()
